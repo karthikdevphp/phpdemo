@@ -1,0 +1,63 @@
+/**
+ * @since 1.0
+ * @link $URL$
+ * @author $Author$
+ * @version $Revision$
+ * @Last Modified$
+ */
+
+.ui-progressbar {
+   
+    position: relative;
+    top:50%;
+    bottom:50%;
+    z-index:1000;
+ }
+  .progress-label {
+    position: absolute;
+    left: 50%;
+    top: 4px;
+    font-weight: bold;
+    text-shadow: 1px 1px 0 #fff;
+  }
+
+    body{
+            font-size :15px;
+            margin:30px 30px;;
+
+    }
+    .Table
+    {
+        display: table;
+    }
+    .Row
+    {
+        display: table-row;
+    }
+    .Cell
+    {
+        display: table-cell;
+        border: solid;
+        border-width: thin;
+        padding-left: 5px;
+        padding-right: 5px;
+        width:250px;
+    }
+
+    .liTabs{
+        width:180px;
+    }
+   
+    #button{
+        padding-left: 10px;
+        padding-right: 10px;
+        width:140px;
+    }
+    
+    #tabs{
+        width:950px;
+    }
+
+    #buttons{
+        width:800px;
+    }

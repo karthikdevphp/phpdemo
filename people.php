@@ -1,0 +1,172 @@
+<?php
+
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+/**
+ * Description of people
+ *
+ * @author karthikdev
+ */
+class People extends AbstractParser
+{
+
+    public $row;
+
+    public $rowData;
+
+    public $csvFileData;
+
+    public $people;
+
+    public $returnData;
+
+    public $sortByColumn; // Sory by Last name / age etc...
+
+    public $status; // OK / ERR
+
+    public $message; // Data found or not?
+    
+    public $file;
+   
+
+    /**
+     * @desc Read config setting from project.ini
+     */
+    function __construct()
+    {
+        parent::__construct('application.ini');
+        
+    }
+
+    /**
+     * 
+     * @name readCSV
+     * @desc Reads csv
+     * @param csv data
+     * @return array
+     */
+    public function parseFile() {
+        $this->file = fopen($this->fileName, "r");
+        return $this->parseCSV();
+        
+    }
+    
+    public function parseCSV()
+    {   
+        if ($this->file and is_readable($this->fileName)) {
+            $this->getRow();            
+        } else {
+            $this->errorLog("could not open the csv file or csv file is not readbale ");
+            $this->csvFileData = array(); // return empty array
+        }
+        
+        fclose($this->file); // close file
+        
+        return $this->csvFileData;
+    }
+    
+    public function getRow()
+    {
+        $this->errorLog("CSV is readble so proceeding... ");
+            while (!feof($this->file)) {
+                $this->row = fgets($this->file);
+                $this->rowData = explode(",", trim($this->row));
+                $this->csvFileData[] = $this->rowData;
+            }
+    }
+   
+    /**
+     * @name getPeoplData
+     * @desc send back People data in array format including status, Message
+     * @return array 
+     */
+    public function getPeople()
+    {
+        if (count($this->people) > 0) {
+            
+            $this->errorLog("csv data found");
+            $this->status = 'OK';
+            $this->message = 'Data found';  
+          
+            foreach ($this->people as $key => $row) {
+                $height[$key]  = $row['height'];
+                $gender[$key] = $row['gender'];
+                $lastName[$key] = $row['lastName'];
+                $dob[$key] = $row['dob'];
+            }
+            
+            if($this->sortByOrder === 'ASC')
+                $flag = SORT_ASC; 
+            elseif($this->sortByOrder === 'DSC')
+                $flag = SORT_DESC;
+                
+            if($this->sortByColumn == 'height')
+            {
+                array_multisort($height,$flag,$this->people);
+            }
+            elseif($this->sortByColumn == 'gender')
+            {
+                array_multisort($gender,$flag,$this->people);
+            }
+            elseif($this->sortByColumn == 'lastName')
+            {
+                array_multisort($lastName,$flag,$this->people);
+            }
+            else
+            {
+                array_multisort($dob,$flag,$this->people);
+            }
+            
+        } else {
+            
+            $this->errorLog("csv does not have any data");
+            $status = 'ERR';
+            $message = 'Data not found';
+            $this->people = array(); // send empty array , means no data found
+        }
+        
+        $this->returnData = array(
+            "status" => $this->status,
+            "message" => $this->message,
+            "people" => $this->people
+        );
+        
+        echo json_encode($this->returnData);
+        
+    }
+
+    /**
+     * @name errorLog
+     * @desc Log all server side meesages
+     * 
+     */
+    function errorLog($msg)
+    {
+        /*$log = fopen($this->logFileName, "a+");
+        
+        if ($log) {
+            
+            $dt = date("Y-m-d H:i:s");
+            
+            if (is_string($msg)) {
+                fprintf($log, "%s [%s]: %s \n", $dt, $_SERVER['SERVER_ADDR'], $msg);
+            } else {
+                ob_start();
+                print_r($msg);
+                fputs($log, ob_get_clean());
+            }
+            
+            fclose($log);
+        }*/
+    }
+    
+    function __destruct()
+    {
+        
+    }
+}
+
+?>
