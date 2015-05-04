@@ -117,10 +117,25 @@ $(document).ready(function() {
 			async: false,
 			data: { 'sortByColumn' : sortByColumn,'sortByOrder' :sortByOrder },
 			beforeSend: progressAnimation,
-			success: function( data, textStatus ) {
-                                 //$('#tabs').css('z-index',2);
-                                //$('#progressbar').css('z-index',0);
-				if( data.status == "OK" ) {
+			success: onSuccess,
+			error: errorHandler,
+			fail: function( xhdr, textStatus, errorThrown ) {
+				console.log(textStatus + errorThrown );
+			},
+			complete: function( xhdr, textStatus ) {
+				console.log(  textStatus );
+			}
+		});
+	}
+        /**
+	 * onSuccess sets the data in the innerhtml of table
+	 * @param data
+	 * @param textStatus
+	 * @returns none
+	 */
+        function onSuccess(data,textStatus)
+        {
+            if( data.status == "OK" ) {
 					console.log( "Status OK ");
 					var line='';
 
@@ -149,33 +164,19 @@ $(document).ready(function() {
 				} else {
 					console.log( "Error occured! " + data  );
 				}
-
-			},
-			error: HandleAJAXError(),
-			fail: function( xhdr, textStatus, errorThrown ) {
-				console.log(textStatus + errorThrown );
-			},
-			complete: function( xhdr, textStatus ) {
-				console.log(  textStatus );
-			}
-		});
-	}
-        
-        function onSuccess()
-        {
-            
         }
 	
 	/**
-	 * HandleAJAXError
+	 * errorHandler
 	 * @param xhdr
 	 * @param textStatus 
 	 * @param errorThrown
 	 * @returns alert user if any Ajax errors
 	 */
-	function HandleAJAXError( xhdr, textStatus, errorThrown )
+	function errorHandler( xhdr, textStatus, errorThrown )
 	{
 		// this gets called for any ajax event??
+                
 		switch( errorThrown ) {
 		case "timeout":
 			alert( "Timeout connecting to the nlyte server. Please try again." );
@@ -183,11 +184,9 @@ $(document).ready(function() {
 		case "error":
 			alert( "General error: "+errorThrown );
 			break;
-
 		case "abort":
 			alert( "The action was aborted. Please try again." );
 			break;
-
 		case "parsererror":
 			alert( "Parser error. Please try again." );
 			break;
