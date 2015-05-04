@@ -158,22 +158,21 @@ class People extends AbstractParser
      */
     function errorLog($msg)
     {
-        /*$log = fopen($this->logFileName, "a+");
+        $log = fopen($this->errorLog,"a+");
         
         if ($log) {
             
             $dt = date("Y-m-d H:i:s");
             
             if (is_string($msg)) {
-                fprintf($log, "%s [%s]: %s \n", $dt, $_SERVER['SERVER_ADDR'], $msg);
+                fprintf($log, "%s [%s]: %s \n", $dt,$_SERVER['SERVER_ADDR'],$msg);
             } else {
                 ob_start();
                 print_r($msg);
-                fputs($log, ob_get_clean());
+                fputs($log,ob_get_clean());
             }
-            
             fclose($log);
-        }*/
+        }
     }
     
     function __destruct()

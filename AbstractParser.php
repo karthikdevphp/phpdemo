@@ -12,7 +12,7 @@ Abstract class AbstractParser{
 
     public $configs;
 
-    public $logFileName;
+    public $errorLog;
     
     public $sortByOrder; // Sory by ASC /DSC
     
@@ -21,7 +21,7 @@ Abstract class AbstractParser{
     {
         $this->configs = parse_ini_file($iniFileName,false);
         $this->fileName = $this->configs['fileName'];
-        $this->logFileName = $this->configs['logFile'];
+        $this->errorLog = $this->configs['errorLog'];
         $this->sortByOrder = $this->configs['sortBy'];  
     }
         
