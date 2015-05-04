@@ -86,12 +86,12 @@ class People extends AbstractParser
     public function getPeople()
     {   
         if (count($this->people) > 0) {
-            $this->errorLog("csv data found");
+            $this->errorLog("csv file has data");
             $this->status = 'OK';
-            $this->message = 'Data found';       
+            $this->message = 'Has Data ';       
             $this->sortPeople();
         } else {
-            $this->errorLog("file has no data");
+            $this->errorLog("csv file does not have data");
             $status = 'ERR';
             $message = 'Data not found';
             $this->people = array(); // send empty array , means no data found
