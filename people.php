@@ -84,44 +84,13 @@ class People extends AbstractParser
      * @return array 
      */
     public function getPeople()
-    {
+    {   
         if (count($this->people) > 0) {
-            
             $this->errorLog("csv data found");
             $this->status = 'OK';
-            $this->message = 'Data found';  
-          
-            foreach ($this->people as $key => $row) {
-                $height[$key]  = $row['height'];
-                $gender[$key] = $row['gender'];
-                $lastName[$key] = $row['lastName'];
-                $dob[$key] = $row['dob'];
-            }
-            
-            if($this->sortByOrder === 'ASC')
-                $flag = SORT_ASC; 
-            elseif($this->sortByOrder === 'DSC')
-                $flag = SORT_DESC;
-                
-            if($this->sortByColumn == 'height')
-            {
-                array_multisort($height,$flag,$this->people);
-            }
-            elseif($this->sortByColumn == 'gender')
-            {
-                array_multisort($gender,$flag,$this->people);
-            }
-            elseif($this->sortByColumn == 'lastName')
-            {
-                array_multisort($lastName,$flag,$this->people);
-            }
-            else
-            {
-                array_multisort($dob,$flag,$this->people);
-            }
-            
+            $this->message = 'Data found';       
+            $this->sortPeople();
         } else {
-            
             $this->errorLog("csv does not have any data");
             $status = 'ERR';
             $message = 'Data not found';
@@ -135,7 +104,51 @@ class People extends AbstractParser
         );
         
         echo json_encode($this->returnData);
+    }
+    
+    /**
+     * @name sortPeople
+     * @desc send back sorted People data in array format
+     * @return array 
+     */
+    public function sortPeople()
+    {
+        $height = array();
+        $gender = array();
+        $lastName = array();
+        $dob = array();
+        $name = array();
         
+        foreach ($this->people as $key => $row) {
+                $height[$key]  = $row['height'];
+                $gender[$key] = $row['gender'];
+                $lastName[$key] = $row['lastName'];
+                $dob[$key] = $row['dob'];
+                $name[$key] = $row['name'];
+            }
+            
+            if($this->sortByOrder === 'ASC')
+                $flag = SORT_ASC; 
+            elseif($this->sortByOrder === 'DSC')
+                $flag = SORT_DESC;
+            
+            switch($this->sortByColumn)
+            {
+                case 'height':
+                    array_multisort($height,$flag,$this->people);
+                    break;
+                case 'gender':
+                    array_multisort($gender,$flag,$this->people);
+                    break;
+                case 'lastName':
+                    array_multisort($lastName,$flag,$this->people);
+                    break;
+                case 'dob':
+                    array_multisort($dob,$flag,$this->people);
+                    break;
+                default :
+                    array_multisort($name,$flag,$this->people);
+            }
     }
 
     /**
