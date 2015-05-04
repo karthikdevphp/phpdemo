@@ -135,7 +135,7 @@ $(document).ready(function() {
             if( data.status == "OK" )
             {
                 console.log( "Status OK ");
-	        var line='';
+	        var personRecord='';
                 //Check for data and then proceed
 		
                 if( data.people != null) {
@@ -143,20 +143,19 @@ $(document).ready(function() {
                     var it=1;
                     $.each( data.people, function(key,person) {
                             //console.log(key);
-                            line +='<div class="Row">';
-                            line +='<div class="Cell">'+person['name']+'</div>';
-                            line +='<div class="Cell">'+person['height']+'</div>';
-                            line +='<div class="Cell">'+person['gender']+'</div>';
-                            line +='<div class="Cell">'+person['dobDisplay']+'</div>';
-                            line +='</div>';						
+                            personRecord +='<div class="Row">';
+                            personRecord +='<div class="Cell">'+person['name']+'</div>';
+                            personRecord +='<div class="Cell">'+person['height']+'</div>';
+                            personRecord +='<div class="Cell">'+person['gender']+'</div>';
+                            personRecord +='<div class="Cell">'+person['dobDisplay']+'</div>';
+                            personRecord +='</div>';						
                             it++;
-
                     });
 	          } 
                   else {
-                        line += '<tr><td colspan="5" class="noData">No Data found</td></tr>';		
+                        personRecord += '<div class="Row">No Data found</div>';		
                   }
-                  $('.Table').html(line);
+                  $('.Table').html(personRecord);
                   $('#tabs').css("display",'block');
 	     } 
              else {
