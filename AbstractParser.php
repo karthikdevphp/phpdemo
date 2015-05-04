@@ -31,10 +31,7 @@ Abstract class AbstractParser{
     
     abstract protected function getRow();
     
-    public function getFileRow()
-    {
-        $this->getFileRow();
-    }        
+          
     
     
 }
