@@ -71,10 +71,10 @@ $(document).ready(function() {
                     progressbar.progressbar( "value", val + 2 );
 
                     if ( val < 99 ) {
-                        setTimeout( progress, 80 );
+                        setTimeout( progress, 2 );
                     }
                 }
-            setTimeout( progress, 2000 );
+            setTimeout( progress,10);
         };
         
 	/**

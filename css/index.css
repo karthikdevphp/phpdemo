@@ -59,5 +59,12 @@
     }
     
     #progressbar{
+        position:absolute;
+        top:200px;
+        bottom:800px;
+        display:inline;
         z-index:100000;
+        width:850px;
     }
+    
+    
