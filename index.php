@@ -17,6 +17,7 @@
                         <span><button id="dob"    value="ASC">Sort by birthdate</button></span>
                     </div>
 		<div id="progressbar"><div class="progress-label">Loading...</div></div>
+                
                 <div id="tabs">
                     <ul>
                         <li class="liTabs"><a href="#tabs-1">Name</a></li>

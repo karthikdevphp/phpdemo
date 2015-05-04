@@ -11,7 +11,9 @@
 
 
 $(document).ready(function() {
-	
+    
+        
+        
 	//When page loads get the data from csv ordered by name    
 	sortByColumn('name','ASC');
 
@@ -33,23 +35,20 @@ $(document).ready(function() {
         
 	$(function() {
             $("#tabs").tabs();
-            $("#tabs-1").css('display','block');
-            $("#tabs-2").css('display','block');
-            $("#tabs-3").css('display','block');
-            $("#tabs-4").css('display','block');
-
+            $(".liTabs > a").attr('href'," ");
         });
         
         $("button" ).button({
             icons: {
-                primary: "ui-icon-triangle-1-s"
+                primary: "ui-icon-triangle-1-s",
+                secondary: "ui-icon-triangle-2-s"
             }
         })
         
         
         
         function progressAnimation() {
-           
+      
             var progressbar = $( "#progressbar" ),
             progressLabel = $( ".progress-label" );
 

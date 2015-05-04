@@ -46,6 +46,7 @@
 
     .liTabs{
         width:185px;
+        pointer-events: none; 
     }
    
     #button{
