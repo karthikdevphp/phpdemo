@@ -11,26 +11,24 @@
 
 
 $(document).ready(function() {
-
-	var sortByOrder = '';
 	
 	//When page loads get the data from csv ordered by name    
-	sortBy('lastName','ASC');
+	sortByColumn('name','ASC');
 
-	$('#orderByName').on('click', function() {
-		sortByHelper (this.value,this.id,'lastName');
+	$('#lastName').on('click', function() {
+		toggleColumn(this.value,this.id);
 	}); 
 
-	$('#orderByHeight').on( 'click',function() {
-		sortByHelper (this.value,this.id,'height');
+	$('#height').on( 'click',function() {
+		toggleColumn(this.value,this.id);
 	});
 
-	$('#orderByGender').on('click', function() {
-		sortByHelper (this.value,this.id,'gender');
+	$('#gender').on('click', function() {
+		toggleColumn(this.value,this.id);
 	});
 
-	$('#orderByDOB').on( 'click',function() {
-		sortByHelper (this.value,this.id,'dob');
+	$('#dob').on( 'click',function() {
+		toggleColumn(this.value,this.id);
 	});
         
 	$(function() {
@@ -80,42 +78,40 @@ $(document).ready(function() {
         };
         
 	/**
-	 * sortByHelper
+	 * toggleColumn
 	 * @param val , value of the coulmn
 	 * @param id , id of the column
 	 * @param column , column name
 	 * @returns sorted Order Object
 	 */
 
-	function sortByHelper (val,id,column) {
-		var sortByOrder = '';
+	function toggleColumn(val,id) {
+		var sortOrder = '';
 		if( val == 'ASC') {
-			sortByOrder = 'ASC';
+			sortOrder = 'ASC';
 			$('#'+id).val('DSC');
 		} else {
-			sortByOrder = 'DSC';
+			sortOrder = 'DSC';
 			$('#'+id).val('ASC');
 		}
-		$('#displayOrder').text(column + '(' + sortByOrder + ')');
-		sortBy(column, sortByOrder );
-
+		sortByColumn(id,sortOrder );
 	}
 	
 	/**
-	 * sortBy
-	 * @param sortByColumn
-	 * @param sortByOrder 
+	 * sortByColumn
+	 * @param Column
+	 * @param sortOrder 
 	 * @returns sorted Object and sends back to index.php
 	 */
 
-	function sortBy (sortByColumn,sortByOrder) {
+	function sortByColumn(column,sortOrder) {
 
 		$.ajax({
                         type: "POST",
 			url: 'request.php',
 			dataType: 'json',
 			async: false,
-			data: { 'sortByColumn' : sortByColumn,'sortByOrder' :sortByOrder },
+			data: { 'sortByColumn' : column,'sortOrder' :sortOrder },
 			beforeSend: progressAnimation,
 			success: onSuccess,
 			error: errorHandler,

@@ -11,10 +11,10 @@
 	<body>
                 <h1>DEMO</h1>
                     <div id="buttons">
-                        <span><button id="orderByName">Sort by last name</button></span>
-                        <span><button id="orderByHeight">Sort by height</button></span>
-                        <span><button id="orderByGender">Sort by gender</button></span>
-                        <span><button id="orderByDOB">Sort by birthdate</button></span>
+                        <span><button id="lastName"   value="ASC">Sort by last name</button></span>
+                        <span><button id="height" value="ASC">Sort by height</button></span>
+                        <span><button id="gender" value="ASC">Sort by gender</button></span>
+                        <span><button id="dob"    value="ASC">Sort by birthdate</button></span>
                     </div>
 		<div id="progressbar"><div class="progress-label">Loading...</div></div>
                 <div id="tabs">

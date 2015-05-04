@@ -16,8 +16,8 @@ if (isset($_POST['sortByColumn'])) {
 }
 
 //Sort order ASC/DSC , by default set by ASC
-if (isset($_POST['sortByOrder'])) {
-    $people->sortByOrder = $_POST['sortByOrder'];
+if (isset($_POST['sortOrder'])) {
+    $people->sortByOrder = $_POST['sortOrder'];
 } else {
     $people->sortByOrder = 'ASC'; 
 }
