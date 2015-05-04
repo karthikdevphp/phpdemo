@@ -45,18 +45,18 @@
     }
 
     .liTabs{
-        width:185px;
+        width:210px;
         pointer-events: none; 
     }
    
-    #button{
-        padding-left: 10px;
-        padding-right: 10px;
-        width:140px;
+    button{
+        
+        border-width:100px; 
+        width:220px;
     }
-    
+ 
     #tabs{
-        width:850px;
+        width:890px;
     }
     
     #progressbar{
