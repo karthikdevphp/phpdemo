@@ -111,6 +111,7 @@ $(document).ready(function() {
 	function sortBy (sortByColumn,sortByOrder) {
 
 		$.ajax({
+                        type: "POST",
 			url: 'request.php',
 			dataType: 'json',
 			async: false,

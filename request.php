@@ -9,15 +9,15 @@ $person = new Person();
 $csvFileData = $people->parseFile(); // Read csv
 
 // Tabe sory by column, by default by set by name
-if (isset($_GET['sortByColumn'])) {
-    $people->sortByColumn = $_GET['sortByColumn'];
+if (isset($_POST['sortByColumn'])) {
+    $people->sortByColumn = $_POST['sortByColumn'];
 } else {
     $people->sortByColumn = 'name'; 
 }
 
 //Sort order ASC/DSC , by default set by ASC
-if (isset($_GET['sortByOrder'])) {
-    $people->sortByOrder = $_GET['sortByOrder'];
+if (isset($_POST['sortByOrder'])) {
+    $people->sortByOrder = $_POST['sortByOrder'];
 } else {
     $people->sortByOrder = 'ASC'; 
 }
