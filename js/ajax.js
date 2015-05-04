@@ -139,7 +139,7 @@ $(document).ready(function() {
                 //Check for data and then proceed
 		
                 if( data.people != null) {
-                    //var tempData = [];
+                   
                     var it=1;
                     $.each( data.people, function(key,person) {
                             //console.log(key);
