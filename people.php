@@ -70,7 +70,7 @@ class People extends AbstractParser
     
     public function getRow()
     {
-        $this->errorLog("CSV is readble so proceeding... ");
+        $this->errorLog("CSV is readble so extracting data... ");
             while (!feof($this->file)) {
                 $this->row = fgets($this->file);
                 $this->rowData = explode(",", trim($this->row));
@@ -91,7 +91,7 @@ class People extends AbstractParser
             $this->message = 'Data found';       
             $this->sortPeople();
         } else {
-            $this->errorLog("csv does not have any data");
+            $this->errorLog("file has no data");
             $status = 'ERR';
             $message = 'Data not found';
             $this->people = array(); // send empty array , means no data found
@@ -162,13 +162,11 @@ class People extends AbstractParser
         
         if ($log) {
             
-            $dt = date("Y-m-d H:i:s");
+            $date = date("Y-m-d H:i:s");
             
             if (is_string($msg)) {
-                fprintf($log, "%s [%s]: %s \n", $dt,$_SERVER['SERVER_ADDR'],$msg);
+                fprintf($log, "%s [%s]: %s \n",$date,$_SERVER['SERVER_ADDR'],$msg);
             } else {
-                ob_start();
-                print_r($msg);
                 fputs($log,ob_get_clean());
             }
             fclose($log);
