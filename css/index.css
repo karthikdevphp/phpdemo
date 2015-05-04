@@ -61,3 +61,7 @@
     #buttons{
         width:800px;
     }
+    
+    #progressbar{
+        z-index:100000;
+    }
