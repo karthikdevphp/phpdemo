@@ -123,6 +123,7 @@ $(document).ready(function() {
 			}
 		});
 	}
+        
         /**
 	 * onSuccess sets the data in the innerhtml of table
 	 * @param data
@@ -131,35 +132,36 @@ $(document).ready(function() {
 	 */
         function onSuccess(data,textStatus)
         {
-            if( data.status == "OK" ) {
-					console.log( "Status OK ");
-					var line='';
+            if( data.status == "OK" )
+            {
+                console.log( "Status OK ");
+	        var line='';
+                //Check for data and then proceed
+		
+                if( data.people != null) {
+                    //var tempData = [];
+                    var it=1;
+                    $.each( data.people, function(key,person) {
+                            //console.log(key);
+                            line +='<div class="Row">';
+                            line +='<div class="Cell">'+person['name']+'</div>';
+                            line +='<div class="Cell">'+person['height']+'</div>';
+                            line +='<div class="Cell">'+person['gender']+'</div>';
+                            line +='<div class="Cell">'+person['dobDisplay']+'</div>';
+                            line +='</div>';						
+                            it++;
 
-					//Check for data and then proceed
-					if( data.people != null) {
-						var tempData = [];
-						var i=1;
-						$.each( data.people, function(  key,item ) {
-							//console.log(key);
-                                                        line +='<div class="Row">';
-							line +='<div class="Cell">'+i+'</div>';
-							line +='<div class="Cell">'+item['name']+'</div>';
-							line +='<div class="Cell">'+item['height']+'</div>';
-							line +='<div class="Cell">'+item['gender']+'</div>';
-							line +='<div class="Cell">'+item['dobDisplay']+'</div>';
-							line +='</div>';						
-							i++;
-
-						});
-					} else {
-						line += '<tr><td colspan="5" class="noData">No Data found</td></tr>';
-					}
-					$('.Table').html(line);
-                                        $('#tabs').css("display",'block');
-
-				} else {
-					console.log( "Error occured! " + data  );
-				}
+                    });
+	          } 
+                  else {
+                        line += '<tr><td colspan="5" class="noData">No Data found</td></tr>';		
+                  }
+                  $('.Table').html(line);
+                  $('#tabs').css("display",'block');
+	     } 
+             else {
+                    console.log( "Error occured! " + data  );
+             }                 
         }
 	
 	/**
