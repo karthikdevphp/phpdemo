@@ -50,38 +50,34 @@ $(document).ready(function() {
         
         
         
-        $(function() {
+        function progressAnimation() {
            
             var progressbar = $( "#progressbar" ),
             progressLabel = $( ".progress-label" );
 
             progressbar.progressbar({
-            value: false,
-            change: function() {
-                progressLabel.text( progressbar.progressbar( "value" ) + "%" );
-               
-            },
-            complete: function() {
-                progressLabel.text( "Complete!" );
-                
-                $("#progressbar").hide();
-            }
+                value: false,
+                change: function() {
+                    progressLabel.text( progressbar.progressbar( "value" ) + "%" );
+                },
+                complete: function() {
+                    progressLabel.text( "Complete!" );
+                    $("#progressbar").hide();
+                }
             
-        });
+            });
  
-        function progress() {
-            
-            var val = progressbar.progressbar( "value" ) || 0;
+            function progress() {
 
-            progressbar.progressbar( "value", val + 2 );
+                    var val = progressbar.progressbar( "value" ) || 0;
+                    progressbar.progressbar( "value", val + 2 );
 
-            if ( val < 99 ) {
-                setTimeout( progress, 80 );
-            }
-            }
-
+                    if ( val < 99 ) {
+                        setTimeout( progress, 80 );
+                    }
+                }
             setTimeout( progress, 2000 );
-        });
+        };
         
 	/**
 	 * sortByHelper
@@ -119,40 +115,7 @@ $(document).ready(function() {
 			dataType: 'json',
 			async: false,
 			data: { 'sortByColumn' : sortByColumn,'sortByOrder' :sortByOrder },
-			beforeSend: function() {
-                            
-				//$('#datBind').html('<tr><td colspan="5" class="noData"><img src="images/ajax-loader.gif" alt="Loading..." /></td><tr>                    
-                
-                        }
-                                /*$(function() {
-                                        var progressbar = $( "#progressbar" ),
-                                        progressLabel = $( ".progress-label" );
-                                        $("#progressbar").css('z-index','1000000');
-
-                                        progressbar.progressbar({
-                                        value: false,
-                                        change: function() {
-                                            progressLabel.text( progressbar.progressbar( "value" ) + "%" );
-                                        },
-                                        complete: function() {
-                                            progressLabel.text( "Complete!" );
-                                            $("#progressbar").hide();
-                                        }
-
-                                    });
-
-                                    function progress() {
-                                        var val = progressbar.progressbar( "value" ) || 0;
-
-                                        progressbar.progressbar( "value", val + 2 );
-
-                                        if ( val < 99 ) {
-                                            setTimeout( progress, 80 );
-                                        }
-                                        }
-
-                                setTimeout( progress, 2000 );
-                            })*/,
+			beforeSend: progressAnimation,
 			success: function( data, textStatus ) {
                                  //$('#tabs').css('z-index',2);
                                 //$('#progressbar').css('z-index',0);
