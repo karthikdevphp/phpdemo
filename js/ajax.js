@@ -115,9 +115,6 @@ $(document).ready(function() {
 			beforeSend: progressAnimation,
 			success: onSuccess,
 			error: errorHandler,
-			fail: function( xhdr, textStatus, errorThrown ) {
-				console.log(textStatus + errorThrown );
-			},
 			complete: function( xhdr, textStatus ) {
 				console.log("ajax call success"+textStatus );
 			}
