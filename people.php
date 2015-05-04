@@ -125,30 +125,30 @@ class People extends AbstractParser
                 $lastName[$key] = $row['lastName'];
                 $dob[$key] = $row['dob'];
                 $name[$key] = $row['name'];
-            }
+         }
             
-            if($this->sortByOrder === 'ASC')
-                $flag = SORT_ASC; 
-            elseif($this->sortByOrder === 'DSC')
-                $flag = SORT_DESC;
+        if($this->sortByOrder === 'ASC')
+            $flag = SORT_ASC; 
+        elseif($this->sortByOrder === 'DSC')
+            $flag = SORT_DESC;
             
-            switch($this->sortByColumn)
-            {
-                case 'height':
-                    array_multisort($height,$flag,$this->people);
-                    break;
-                case 'gender':
-                    array_multisort($gender,$flag,$this->people);
-                    break;
-                case 'lastName':
-                    array_multisort($lastName,$flag,$this->people);
-                    break;
-                case 'dob':
-                    array_multisort($dob,$flag,$this->people);
-                    break;
-                default :
-                    array_multisort($name,$flag,$this->people);
-            }
+        switch($this->sortByColumn)
+        {
+            case 'height':
+                array_multisort($height,$flag,$this->people);
+                break;
+            case 'gender':
+                array_multisort($gender,$flag,$this->people);
+                break;
+            case 'lastName':
+                array_multisort($lastName,$flag,$this->people);
+                break;
+            case 'dob':
+                array_multisort($dob,$flag,$this->people);
+                break;
+            default :
+                array_multisort($name,$flag,$this->people);
+        }
     }
 
     /**
