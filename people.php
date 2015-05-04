@@ -167,7 +167,7 @@ class People extends AbstractParser
             if (is_string($msg)) {
                 fprintf($log, "%s [%s]: %s \n",$date,$_SERVER['SERVER_ADDR'],$msg);
             } else {
-                fputs($log,ob_get_clean());
+                fputs($log);
             }
             fclose($log);
         }
