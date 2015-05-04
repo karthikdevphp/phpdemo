@@ -19,7 +19,6 @@
 		<div id="progressbar"><div class="progress-label">Loading...</div></div>
                 <div id="tabs">
                     <ul>
-                        <li class="liTabs"><a href="#tabs-1">#</a></li>
                         <li class="liTabs"><a href="#tabs-1">Name</a></li>
                         <li class="liTabs"><a href="#tabs-2">Height</a></li>
                         <li class="liTabs"><a href="#tabs-3">Gender</a></li>
