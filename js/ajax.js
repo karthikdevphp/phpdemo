@@ -51,7 +51,7 @@ $(document).ready(function() {
         
         
         $(function() {
-            $("tabs").fadeOut();
+           
             var progressbar = $( "#progressbar" ),
             progressLabel = $( ".progress-label" );
 
@@ -81,7 +81,6 @@ $(document).ready(function() {
             }
 
             setTimeout( progress, 2000 );
-             $("tabs").fadeIn();
         });
         
 	/**
@@ -93,10 +92,6 @@ $(document).ready(function() {
 	 */
 
 	function sortByHelper (val,id,column) {
-                $('#tabs').css('z-index',0);
-                $('#tabs').hide();
-                $('#progressbar').css('z-index',100000);
- 
 		var sortByOrder = '';
 		if( val == 'ASC') {
 			sortByOrder = 'ASC';
