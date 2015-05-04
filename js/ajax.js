@@ -119,7 +119,7 @@ $(document).ready(function() {
 				console.log(textStatus + errorThrown );
 			},
 			complete: function( xhdr, textStatus ) {
-				console.log(  textStatus );
+				console.log("ajax call success"+textStatus );
 			}
 		});
 	}
@@ -172,24 +172,26 @@ $(document).ready(function() {
 	 */
 	function errorHandler( xhdr, textStatus, errorThrown )
 	{
-		// this gets called for any ajax event??
                 
 		switch( errorThrown ) {
 		case "timeout":
-			alert( "Timeout connecting to the nlyte server. Please try again." );
+			alert( "Timeout connecting to the server. Please try again." );
+                        console.log( "Error occured timeout"  );
 			break;
 		case "error":
 			alert( "General error: "+errorThrown );
+                        console.log( "Error occured! error"+errorThrown);
 			break;
 		case "abort":
 			alert( "The action was aborted. Please try again." );
+                        console.log( "Error occured! abort"  );
 			break;
 		case "parsererror":
 			alert( "Parser error. Please try again." );
+                        console.log( "Error occured! parsererror ");
 			break;
 		}
 	}
-
 
 });
 
